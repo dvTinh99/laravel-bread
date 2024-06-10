@@ -40,4 +40,16 @@ class AdminController extends Controller
         $orders = Order::paginate(15);
         return view('bread.admin.pages.list-order', compact('orders'));
     }
+
+    function delete($id) {
+        $product = Product::find($id);
+        if ($product) {
+            $product->delete();
+
+            return 'delete product successfully';
+        } else {
+            return 'delete product failed';
+        }
+
+    }
 }

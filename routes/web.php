@@ -87,6 +87,9 @@ Route::prefix('/admin')->middleware([CheckAdmin::class])->name('admin-')->group(
         Route::get('/table', 'table')->name('table');
         Route::get('/login', 'login')->name('login');
         Route::get('/register', 'register')->name('register');
+
+
+        Route::delete('/product-delete/{id}', 'delete')->name('product-delete');
     });
     // Route::get('/remove/{id}', 'remove')->name('cart-remove');
 });

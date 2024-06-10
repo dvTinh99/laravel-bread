@@ -36,7 +36,7 @@
                   <td>
                     <button class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#defaultModal"> EDIT </button>
-                    <button class="btn btn-danger"> DELETE </button>
+                    <button class="btn btn-danger" onclick="deleteProduct({{ $product->id }})"> DELETE 3</button>
                   </td>
                 </tr>
                 @endforeach
@@ -93,4 +93,32 @@
     </div>
   </div>
 </div>
+
+<script>
+
+    async function deleteOrder(id) {
+                let data = await callApi("/order/" + id, 'delete');
+                alert(data);
+                location.reload();
+            }
+
+            async function callApi(url, method, objectData = null) {
+                return await $.ajax({
+                    url: url,
+                    method: method,
+                    data: objectData,
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                }).done(function(data) {
+                    return data
+                });
+            }
+
+        async function deleteProduct(id) {
+        // alert('product deleted');
+        let data = await callApi("/admin/product-delete/" + id, 'delete');
+        alert(data);
+        location.reload();
+
+    }
+</script>
 @endsection
