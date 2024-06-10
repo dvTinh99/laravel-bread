@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     }
 
-    
+
     function contact() {
         return view('bread.pages.contacts');
     }
@@ -27,6 +27,10 @@ class HomeController extends Controller
     function detail($id) {
         $product = Product::find($id);
         return view('bread.pages.product', compact('product'));
+    }
+
+    function productType() {
+        return view('bread.pages.product_type');
     }
 
     function checkout() {

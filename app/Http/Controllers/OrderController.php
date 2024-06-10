@@ -35,4 +35,12 @@ class OrderController extends Controller
         $orderDetails = OrderDetail::where('order_id', $id)->with('product')->get();
         return response()->json($orderDetails, 200);
     }
+
+    function delete($id) {
+        $order = Order::find($id);
+        $order->order_detail()->delete();
+        $order->delete();
+
+        return response()->json('delete success', 200);
+    }
 }
